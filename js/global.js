@@ -1,9 +1,29 @@
 const cardNovaLista = document.getElementById('cardNovaLista')
 const btnNovaLista = document.getElementById('btnNovaLista')
+const formNovaLista = document.getElementById('NovaLista')
+
+const listas = []
 
 btnNovaLista.addEventListener('click', function() {
     cardNovaLista.style.display = 'block'
 })
-cancel.addEventListener('click', function() {
-    cancel.style.display = 'none'
+
+formNovaLista.addEventListener('submit', function(event) {
+    event.preventDefault()
+    const inputTitulo = document.querySelector('input[name="tituloLista"]')
+    if(inputTitulo.value !=='') {
+    const novaLista = {
+        id: listas.length + 1,
+        titulo: inputTitulo.value
+    }
+    inputTitulo.value = ''
+    listas.push(novaLista)
+    window.localStorage.listas = JSON.stringify(listas)
+    
+    }
+    console.log(listas)
+})
+
+formNovaLista.addEventListener('reset', function(event) {
+    formNovaLista.style.display = 'none'
 })
